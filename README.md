@@ -1,6 +1,6 @@
 # Ez LLM
 
-React/Vite Project for an itneractive eLearning Application for Neural Networks.
+React/Vite Project for an interactive eLearning Application for Neural Networks.
 
 Currently, two official plugins are available:
 
