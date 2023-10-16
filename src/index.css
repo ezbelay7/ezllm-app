@@ -71,3 +71,9 @@ button:focus-visible {
   margin: 0 100px;
   text-align: center;
 }
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  margin-top: 80px; /* add a margin to the top */
+  margin-bottom: 40px; /* remove the margin from the bottom */
+}
