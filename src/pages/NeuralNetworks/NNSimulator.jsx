@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import '../../styles/multilayerperceptron.css';
 
+import { Link } from 'react-router-dom';
+
 function sigmoid(x) {
   return 1 / (1 + Math.exp(-x));
 }
@@ -14,61 +16,6 @@ function NNSimulator() {
     const svg = d3.select(svgRef.current);
     const width = svgRef.current.clientWidth;
     const height = svgRef.current.clientHeight;
-
-    function calculateOutput(svg, nodes) {
-      // Grab the weights from the sliders
-      const I1_H1_weight = parseFloat(d3.select('.I1-H1-slider input[type="range"]').property('value'));
-      const I1_H2_weight = parseFloat(d3.select('.I1-H2-slider input[type="range"]').property('value'));
-      const I2_H1_weight = parseFloat(d3.select('.I2-H1-slider input[type="range"]').property('value'));
-      const I2_H2_weight = parseFloat(d3.select('.I2-H2-slider input[type="range"]').property('value'));
-      const H1_O_weight = parseFloat(d3.select('.H1-O-slider input[type="range"]').property('value'));
-      const H2_O_weight = parseFloat(d3.select('.H2-O-slider input[type="range"]').property('value'));
-      
-      // Given the inputs
-      const I1_value = 3;
-      const I2_value = 1;
-      svg.selectAll('.input-text').remove(); 
-      svg.append('text')
-        .attr('class', 'input-text')
-        .attr('x', nodes.find((n) => n.id === 'I1').layer * (0.8 * width / 4))
-        .attr('y', nodes.find((n) => n.id === 'I1').pos * (height / 3))
-        .attr('text-anchor', 'end')
-        .attr('alignment-baseline', 'middle')
-        .text(`I1: ${I1_value}`)
-        .style('font-size', '20px')
-        .style('font-weight', 'bold')
-        .style('fill', 'orange');
-      svg.append('text')
-        .attr('class', 'input-text')
-        .attr('x', nodes.find((n) => n.id === 'I2').layer * (0.8 * width / 4))
-        .attr('y', nodes.find((n) => n.id === 'I2').pos * (height / 3))
-        .attr('text-anchor', 'end')
-        .attr('alignment-baseline', 'middle')
-        .text(`I2: ${I2_value}`)
-        .style('font-size', '20px')
-        .style('font-weight', 'bold')
-        .style('fill', 'orange');
-    
-      // Compute hidden node values using the sigmoid activation function
-      const H1_value = sigmoid(I1_value * I1_H1_weight + I2_value * I2_H1_weight);
-      const H2_value = sigmoid(I1_value * I1_H2_weight + I2_value * I2_H2_weight);
-      
-      // Compute the output
-      const O_value = sigmoid(H1_value * H1_O_weight + H2_value * H2_O_weight);
-    
-      // Display the output on the SVG
-      svg.selectAll('.output-text').remove();  // Remove any previous text
-      svg.append('text')
-        .attr('class', 'output-text')
-        .attr('x', nodes.find((n) => n.id === 'O').layer * (svgRef.current.clientWidth / 4))
-        .attr('y', nodes.find((n) => n.id === 'O').pos * (svgRef.current.clientHeight / 3) + 40)
-        .attr('text-anchor', 'middle')
-        .attr('alignment-baseline', 'middle')
-        .text(`Output: ${O_value.toFixed(2)}`)
-        .style('font-size', '20px')
-        .style('font-weight', 'bold')
-        .style('fill', 'orange');
-    }
 
     // Define nodes
     const nodes = [
@@ -88,6 +35,64 @@ function NNSimulator() {
       { source: 'H1', target: 'O' },
       { source: 'H2', target: 'O' },
     ];
+    
+
+    function calculateOutput(svg, nodes) {
+      // Grab the weights from the sliders
+      const I1_H1_weight = parseFloat(d3.select('.I1-H1-slider input[type="range"]').property('value'));
+      const I1_H2_weight = parseFloat(d3.select('.I1-H2-slider input[type="range"]').property('value'));
+      const I2_H1_weight = parseFloat(d3.select('.I2-H1-slider input[type="range"]').property('value'));
+      const I2_H2_weight = parseFloat(d3.select('.I2-H2-slider input[type="range"]').property('value'));
+      const H1_O_weight = parseFloat(d3.select('.H1-O-slider input[type="range"]').property('value'));
+      const H2_O_weight = parseFloat(d3.select('.H2-O-slider input[type="range"]').property('value'));
+      
+      // Given the inputs
+      const I1_value = 3;
+      const I2_value = 1;
+      svg.selectAll('.input-text').remove(); 
+      svg.append('text')
+        .attr('class', 'input-text')
+        .attr('x', nodes.find((n) => n.id === 'I1').layer * (width / 4)+ 90)
+        .attr('y', nodes.find((n) => n.id === 'I1').pos * (height / 3) - 50)
+        .attr('text-anchor', 'end')
+        .attr('alignment-baseline', 'middle')
+        .text(`I1 (Genre Interest) = ${I1_value}`)
+        .style('font-size', '20px')
+        .style('font-weight', 'bold')
+        .style('fill', 'orange');
+      svg.append('text')
+        .attr('class', 'input-text')
+        .attr('x', nodes.find((n) => n.id === 'I2').layer * (width / 4) + 120)
+        .attr('y', nodes.find((n) => n.id === 'I2').pos * (height / 3) + 55)
+        .attr('text-anchor', 'end')
+        .attr('alignment-baseline', 'middle')
+        .text(`I2 (Number of Friend's Approval) = ${I2_value}`)
+        .style('font-size', '20px')
+        .style('font-weight', 'bold')
+        .style('fill', 'orange');
+      
+        
+    
+      // Compute hidden node values using the sigmoid activation function
+      const H1_value = sigmoid(I1_value * I1_H1_weight + I2_value * I2_H1_weight);
+      const H2_value = sigmoid(I1_value * I1_H2_weight + I2_value * I2_H2_weight);
+      
+      // Compute the output
+      const O_value = sigmoid(H1_value * H1_O_weight + H2_value * H2_O_weight);
+    
+      // Display the output on the SVG
+      svg.selectAll('.output-text').remove();  // Remove any previous text
+      svg.append('text')
+        .attr('class', 'output-text')
+        .attr('x', nodes.find((n) => n.id === 'O').layer * (svgRef.current.clientWidth / 4))
+        .attr('y', nodes.find((n) => n.id === 'O').pos * (svgRef.current.clientHeight / 3) + 50)
+        .attr('text-anchor', 'middle')
+        .attr('alignment-baseline', 'middle')
+        .text(`Output = ${O_value.toFixed(2)}`)
+        .style('font-size', '20px')
+        .style('font-weight', 'bold')
+        .style('fill', 'orange');
+    }
 
     // Draw links
     svg.selectAll('line')
@@ -109,7 +114,7 @@ function NNSimulator() {
       .append('circle')
       .attr('cx', (d) => d.layer * (width / 4))
       .attr('cy', (d) => d.pos * (height / 3))
-      .attr('r', 20)
+      .attr('r', 35)
       .style('fill', 'lightblue');
 
     // add labels to nodes
@@ -122,7 +127,7 @@ function NNSimulator() {
       .attr('text-anchor', 'middle')
       .attr('alignment-baseline', 'middle')
       .text((d) => d.id)
-      .style('font-size', '20px')
+      .style('font-size', '25px')
       .style('font-weight', 'bold')
       .style('fill', 'black');
 
@@ -145,7 +150,9 @@ function NNSimulator() {
           .attr('type', 'text')
           .attr('value', `${source}-${target}`)
           .attr('readonly', true)
-          .style('width', '50px')
+          .style('margin-right', '10px')
+          .style('font-size', '20px') 
+          .style('width', '100px')
           .style('text-align', 'center');
         const slider = inputContainer.append('input')
           .attr('type', 'range')
@@ -153,9 +160,8 @@ function NNSimulator() {
           .attr('max', 1)
           .attr('value', 0)
           .attr('step', 0.1)
+          .style('width', '250px') 
           .style('accent-color', '#646cff')
-          .attr('x', (d) => nodes.find((n) => n.id === d.source).pos * (width / 4))
-          .attr('y', (d) => nodes.find((n) => n.id === d.target).pos * (height / 3))
           .attr('transform', 'translate(10, 10)')
           .on('input', function () {
             const source = d.source;
@@ -171,8 +177,11 @@ function NNSimulator() {
           });
         const span = inputContainer.append('span')
           .text(slider.property('value'))
-          .style('margin-left', '10px');
+          .style('margin-left', '10px')
+          .style('font-size', '20px');
       });
+
+      calculateOutput(svg, nodes);
 
     }, []);
 
@@ -208,9 +217,17 @@ function NNSimulator() {
       <p>Given that I1 = 1 and I2 = 3, tune the weights of the network so that the movie reccomendation system outputs a probability of 77%! 
       </p>
         
-      <svg ref={svgRef} width="600" height="400" style={{ margin: 'auto', display: 'block' }}></svg>
-      <div ref={slidersRef}></div>
+      <svg ref={svgRef} width="1000" height="600" style={{ margin: 'auto', display: 'block' }}></svg>
+      <div ref={slidersRef}></div>  
+      <div className='centered-div'>
+        <br></br>
+        <br></br>
+        <Link to="/">
+            <button style={{fontSize: '24px'}}>Home</button>
+        </Link>
+      </div>
     </div>
+    
   );
 }
 

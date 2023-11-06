@@ -3,10 +3,11 @@ import * as d3 from 'd3';
 
 import { Link } from 'react-router-dom';
 
+import neuronImage from '../../images/neuron.png';  
 function NeuralNetworks() {
 
   return (
-    <div>
+    <div className='page-div'>
       <h1>Introduction to Neural Networks</h1>
       <br></br>
       <h2 style={{textAlign: 'left'}}>What is a Neural Network?</h2>
@@ -17,7 +18,8 @@ function NeuralNetworks() {
         and they can learn and adapt over time, making neural networks really good at tasks like recognizing patterns 
         in images, understanding spoken language, or making decisions based on data. So, think of a neural network as a 
         digital brain that helps computers make sense of the world around them.</p>
-      <img src='https://miro.medium.com/max/1400/1*QVIyc5HnGDWTNX3m-nIm9w.png' alt='neuron' />
+      <img src={neuronImage} alt="A Neuron in your Brain" style={{width: '50%'}}/>
+      <p><b>A Neuron in your Brain</b></p>
       <br></br>
       <br></br>
       <Link to="/singlelayerperceptron">
@@ -26,5 +28,4 @@ function NeuralNetworks() {
     </div>
   );
 }
-
 export default NeuralNetworks;

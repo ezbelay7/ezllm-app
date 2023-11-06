@@ -36,6 +36,10 @@ h1 {
   line-height: 1.1;
 }
 
+.page-div {
+  padding: 20px;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -71,9 +75,8 @@ button:focus-visible {
   margin: 0 100px;
   text-align: center;
 }
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-  margin-top: 80px; /* add a margin to the top */
-  margin-bottom: 40px; /* remove the margin from the bottom */
+
+h1, h2, h3 {
+  color: #1288ff;
 }
+

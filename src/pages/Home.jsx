@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/home.css'
+import NNImage from '../images/NN.png'
 
 function Home() {
 
@@ -19,6 +20,9 @@ function Home() {
                     people with no prior knowledge learn about neural networks and the transformer architecture using simplified 
                     analogies and interactive features, so that they can leave the application with an understanding of how GPT and other chatbots function.
                 </p>
+            </div>
+            <div>
+               <img src={NNImage} alt='neural network' className='imageStyle'/>
             </div>
             <div className='moduleStyle'>
                 <Link to="/neuralnetworks">

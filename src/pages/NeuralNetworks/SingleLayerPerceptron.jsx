@@ -8,7 +8,7 @@ import slpImage from '../../images/SLP.png';
 function SingleLayerPerceptron() {
 
     return (
-        <div>
+        <div className='page-div'>
             <h1>Single Layer Perceptron</h1>
             <br></br>
             <p>A single layer perceptron is the simplest type of artificial neural network, which consists
@@ -16,7 +16,7 @@ function SingleLayerPerceptron() {
                  daunting, we will walk through what each of the items in the diagram to our right are with an 
                  analogy for Inputs, Weights, Sum, Activation Function.</p>
             <br></br>
-            <img src={slpImage} alt="Single Layer Perceptron" />
+            <img src={slpImage} alt="Single Layer Perceptron" style={{width: '80%'}} />
             <br></br>
             <br></br>
             <Link to="/lampanalogy">

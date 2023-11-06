@@ -1,12 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import * as d3 from 'd3';
 
 import { Link } from 'react-router-dom';
 
 function ActivationFunction() {
 
   return (
-    <div>
+    <div className='page-div'>
       <h1>Activation Function</h1>
       <br></br>
       <p>Now, having summed up all its electricity, the lamp has a decision to make. 

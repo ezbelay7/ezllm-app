@@ -8,7 +8,7 @@ import lampImage from '../../images/lamp.png';
 function LampAnalogy() {
 
   return (
-    <div>
+    <div className='page-div'>
       <h1>Single Layer Perceptron Analogy: Lamp</h1>
       <br></br>
       <h2 style={{textAlign: 'left'}}>Analogy for Artificial Neural Networks</h2>
