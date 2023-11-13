@@ -17,7 +17,6 @@ import Summation from './pages/NeuralNetworks/LampAnalogyItems/Summation';
 import Weights from './pages/NeuralNetworks/LampAnalogyItems/Weights';
 import Transformers from './pages/Transformers/Transformers';
 import Architecture from './pages/Transformers/Architecture';
-import Tester from './pages/NeuralNetworks/tester';
 
 
 function App() {
@@ -41,7 +40,6 @@ function App() {
           <Route path="/weights" element={<Weights />} />
           <Route path="/transformers" element={<Transformers />} />
           <Route path="/architecture" element={<Architecture />} />
-          <Route path="/tester" element={<Tester />} />
         </Routes>
         </div>
       </div>

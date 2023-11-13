@@ -43,9 +43,6 @@ function LampAnalogy() {
       <Link to="/multilayerperceptron">
         <button>Let's move on to Multilayer Perceptrons!</button>
       </Link>
-      <Link to="/tester">
-        <button>Let's move to TESTER!</button>
-      </Link>
     </div>
   );
 }
