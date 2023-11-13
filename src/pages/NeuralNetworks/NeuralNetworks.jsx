@@ -1,9 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import * as d3 from 'd3';
 
 import { Link } from 'react-router-dom';
 
-import neuronImage from '../../images/neuron.png';  
+import neuronImage from '../../images/neuron.svg';  
 function NeuralNetworks() {
 
   return (

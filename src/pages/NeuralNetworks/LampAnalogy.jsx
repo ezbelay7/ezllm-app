@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from 'react';
-import * as d3 from 'd3';
+import React from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -43,6 +42,9 @@ function LampAnalogy() {
       <br></br>
       <Link to="/multilayerperceptron">
         <button>Let's move on to Multilayer Perceptrons!</button>
+      </Link>
+      <Link to="/tester">
+        <button>Let's move to TESTER!</button>
       </Link>
     </div>
   );

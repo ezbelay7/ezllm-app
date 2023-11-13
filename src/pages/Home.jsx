@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/home.css'
 import NNImage from '../images/NN.png'
+import { motion } from 'framer-motion'
 
 function Home() {
 
     return (
         <div>
             <div className='headerStyle'>
-                <h1><i>EzLLM</i>: An Interactive eLearning Application for Neural Networks</h1>
+                <motion.h1 animate={{ y: 20, opacity: 1 }} initial={{ y: -20, opacity: 0 }} transition={{ duration: 0.5 }}><i>EzLLM</i>: An Interactive eLearning Application for Neural Networks</motion.h1>
             </div>
             <div className='missionStyle'>
                 <h2>Mission of the project</h2>
@@ -21,16 +22,18 @@ function Home() {
                     analogies and interactive features, so that they can leave the application with an understanding of how GPT and other chatbots function.
                 </p>
             </div>
-            <div>
-               <img src={NNImage} alt='neural network' className='imageStyle'/>
-            </div>
+            <br></br>
+            <br></br>
+            <motion.div animate={{ scale: 1.2 }} transition={{ duration: 1 }} whileHover={{ scale: 1.5 }}>
+                <img src={NNImage} alt='neural network' className='imageStyle'/>
+            </motion.div>
             <div className='moduleStyle'>
                 <Link to="/neuralnetworks">
-                    <button className='buttonStyle'>Learn about Neural Networks!</button>
+                    <motion.button animate={{ y: 10, opacity: 1 }} initial={{ y: -10, opacity: 0 }} transition={{ duration: 0.5 }} className='buttonStyle'>Learn about Neural Networks!</motion.button>
                 </Link>
                 <br></br>
                 <Link to="/transformers">
-                    <button className='buttonStyle'>Dive into Transformers!</button>
+                    <motion.button animate={{ y: 10, opacity: 1 }} initial={{ y: -10, opacity: 0 }} transition={{ duration: 0.5 }} className='buttonStyle'>Dive into Transformers!</motion.button>
                 </Link>
             </div>
         </div>

@@ -47,8 +47,8 @@ function NNSimulator() {
       const H2_O_weight = parseFloat(d3.select('.H2-O-slider input[type="range"]').property('value'));
       
       // Given the inputs
-      const I1_value = 3;
-      const I2_value = 1;
+      const I1_value = 1;
+      const I2_value = 3;
       svg.selectAll('.input-text').remove(); 
       svg.append('text')
         .attr('class', 'input-text')
@@ -109,14 +109,70 @@ function NNSimulator() {
       
     // Draw nodes
     svg.selectAll('circle')
-      .data(nodes)
-      .enter()
-      .append('circle')
-      .attr('cx', (d) => d.layer * (width / 4))
-      .attr('cy', (d) => d.pos * (height / 3))
-      .attr('r', 35)
-      .style('fill', 'lightblue');
-
+    .data(nodes)
+    .enter()
+    .append('circle')
+    .attr('cx', (d) => d.layer * (width / 4))
+    .attr('cy', (d) => d.pos * (height / 3))
+    .attr('r', 35)
+    .style('fill', 'lightblue')
+    .on('mouseover', function(event, d) {
+      // Define the tooltip text based on the node ID
+      let tooltipText = "";
+      switch(d.id) {
+        case 'I1':
+          tooltipText = "Measures how much the user likes the genre of the new movie.";
+          break;
+        case 'I2':
+          tooltipText = "Represents the number of friends who liked the movie.";
+          break;
+        case 'H1':
+          tooltipText = "Factors in both genre interest and friends' approval to weigh their combined importance.";
+          break;
+        case 'H2':
+          tooltipText = "Considers the number of friends who liked the movie, indicating the importance of social proof.";
+          break;
+        case 'O':
+          tooltipText = "Gives the probability that the user will enjoy the movie.";
+          break;
+        default:
+          tooltipText = "";
+      }
+      // Display the tooltip
+      d3.select(this)
+        .append('title')
+        .text(tooltipText);
+    })
+    .on('mouseout', function() {
+      // Remove the tooltip on mouseout
+      d3.select(this).select('title').remove();
+    })
+    .on('click', function(event, d) {
+      // Define the information text based on the node ID
+      let infoText = "";
+      switch(d.id) {
+        case 'I1':
+          infoText = "Measures how much the user likes the genre of the new movie.";
+          break;
+        case 'I2':
+          infoText = "Represents the number of friends who liked the movie.";
+          break;
+        case 'H1':
+          infoText = "Factors in both genre interest and friends' approval to weigh their combined importance.";
+          break;
+        case 'H2':
+          infoText = "Considers the number of friends who liked the movie, indicating the importance of social proof.";
+          break;
+        case 'O':
+          infoText = "O: Gives the probability that the user will enjoy the movie.";
+          break;
+        default:
+          infoText = "";
+      }
+      // Update the node-info div with the information
+      d3.select('.node-info').text(infoText);
+    });
+  
     // add labels to nodes
     svg.selectAll('text')
       .data(nodes)
@@ -216,8 +272,8 @@ function NNSimulator() {
 
       <p>Given that I1 = 1 and I2 = 3, tune the weights of the network so that the movie reccomendation system outputs a probability of 77%! 
       </p>
-        
       <svg ref={svgRef} width="1000" height="600" style={{ margin: 'auto', display: 'block' }}></svg>
+      <div className='node-info' style={{ textAlign: 'center', marginTop: '20px' }}></div>  
       <div ref={slidersRef}></div>  
       <div className='centered-div'>
         <br></br>

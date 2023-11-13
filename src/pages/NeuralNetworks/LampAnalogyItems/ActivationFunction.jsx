@@ -1,6 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 import { Link } from 'react-router-dom';
+
+import lampImage from '../../../images/lamp.png';
 
 function ActivationFunction() {
 

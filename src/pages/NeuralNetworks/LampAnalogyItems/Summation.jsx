@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import lampImage from '../../../images/lamp.png';
+
 function Summation() {
 
   return (

@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-function Bias() {
+import lampImage from '../../../images/lamp.png';
 
+function Bias() {
   return (
     <div className='page-div'>
       <h1> Bias </h1>

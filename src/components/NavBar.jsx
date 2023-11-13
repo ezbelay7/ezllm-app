@@ -7,7 +7,7 @@ import './NavBar.css'; // Import the CSS for styling
 const NavBar = () => {
   return (
     <nav className="side-navbar">
-        <h1><i>EzLLM</i></h1>
+        <h2><i>EzLLM</i></h2>
         {/* Main links */}
       <NavLink className="nav-link" to="/">
         Home
