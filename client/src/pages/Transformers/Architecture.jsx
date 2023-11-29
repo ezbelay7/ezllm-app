@@ -3,6 +3,8 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import transformerImage from '../../images/transformerarchitecture.png';
+import Chat from '../../components/Chat';
+import GPTChat from '../../components/GPTChat';
 
 function Architecture() {
 
@@ -14,6 +16,10 @@ function Architecture() {
       <br></br>
         <p>But where do we start? How do we know which pieces to put together? We need to find a way to understand the relationships between the pieces and the puzzle as a whole. We can't just randomly start putting pieces together and hope that they fit. We need to be able to understand the puzzle's context and the relationships between the pieces.</p>
     <img src={transformerImage} alt='transformer' />
+      <br></br>
+      <h3>Chat Component</h3>
+      <Chat />
+      <br></br>
       <br></br>
       <Link to="/">
         <button>Home</button>

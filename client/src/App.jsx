@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import { useEffect } from 'react';
+
 
 import NavBar from './components/NavBar';
 
@@ -19,7 +21,26 @@ import Transformers from './pages/Transformers/Transformers';
 import Architecture from './pages/Transformers/Architecture';
 
 
+
+// const fetchTestEndpoint = async () => {
+//   try {
+//     const response = await fetch('/api/test');
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! status: ${response.status}`);
+//     }
+//     const data = await response.json();
+//     console.log(data);
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//   }
+// };
+
+
 function App() {
+  // useEffect(() => {
+  //   fetchTestEndpoint();
+  // }, []);
+  
   return (
     <Router>
       <div>
