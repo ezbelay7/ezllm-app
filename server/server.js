@@ -1,52 +1,69 @@
 
-// // Existing GET endpoint
-// app.get('/api/test', (req, res) => {
-//   res.json({ message: 'Hello from the backend!' });
-// });
+// // // Existing GET endpoint
+// // app.get('/api/test', (req, res) => {
+// //   res.json({ message: 'Hello from the backend!' });
+// // });
 
-// // New POST endpoint for chat
-// app.post('/api/chat', (req, res) => {
+// // // New POST endpoint for chat
+// // app.post('/api/chat', (req, res) => {
+// //   const userMessage = req.body.message;
+// //   const responseMessage = `${userMessage} Backend works!`;
+// //   res.json({ message: responseMessage });
+// // });
+
+// const express = require('express');
+// const cors = require('cors');
+// const app = express();
+// const port = 3001;
+
+// // Enable CORS for all routes
+// app.use(cors());
+
+// // Middleware to parse JSON body
+// app.use(express.json());
+
+// // POST endpoint for chat
+// app.post('/api/chat', async (req, res) => {
+//   console.log("Received message from frontend:", req.body.message);
 //   const userMessage = req.body.message;
-//   const responseMessage = `${userMessage} Backend works!`;
+//   const responseMessage = `Recieved on Backend: "${userMessage}"`;
 //   res.json({ message: responseMessage });
+
+
 // });
 
+// app.listen(port, () => {
+//   console.log(`Server listening at http://localhost:${port}`);
+// });
 const express = require('express');
 const cors = require('cors');
-const { PythonShell } = require('python-shell');
+const { spawn } = require('child_process');
 const app = express();
 const port = 3001;
 
-// Enable CORS for all routes
 app.use(cors());
-
-// Middleware to parse JSON body
 app.use(express.json());
 
-// POST endpoint for chat
-app.post('/api/chat', async (req, res) => {
+app.post('/api/chat', (req, res) => {
   console.log("Received message from frontend:", req.body.message);
   const userMessage = req.body.message;
-  const responseMessage = `Recieved on Backend: "${userMessage}"`;
-  res.json({ message: responseMessage });
 
-  // let options = {
-  //   mode: 'text',
-  //   pythonOptions: ['-u'], // get print results in real-time
-  //   args: [userMessage] // arguments to pass to the Python script
-  // };
+  // Spawn Python process
+  const pythonProcess = spawn('python3', ['../python-backend/text_generator.py', userMessage]);
 
-  // PythonShell.run('text_generator.py', options, function (err, results) {
-  //   if (err) {
-  //     console.error('Error:', err);
-  //     res.status(500).send('Error processing the text generation');
-  //   } else {
-  //     console.log("Response from Python script:", results[0]);
-  //     // results is an array consisting of messages collected during execution
-  //     res.json({ message: results[0] });
-  //   }
-  // });
-  
+  let pythonOutput = '';
+
+  pythonProcess.stdout.on('data', (data) => {
+    pythonOutput += data.toString();
+  });
+
+  pythonProcess.on('close', (code) => {
+    if (code !== 0) {
+      console.error(`Python script exited with code ${code}`);
+      return res.status(500).json({ message: 'Error in Python script' });
+    }
+    res.json({ message: pythonOutput });
+  });
 });
 
 app.listen(port, () => {
