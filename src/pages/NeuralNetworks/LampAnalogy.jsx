@@ -59,17 +59,17 @@ function LampAnalogy() {
         case 'x1':
         case 'x2':
         case 'x3':
-          return 'This is an input node. It represents one of the inputs to the neural network.';
+          return 'In our cozy room, the lamp can draw power from various sources: the solar panels that soak up sunlight, the batteries that store energy, and the ever-reliable direct power line. Each source represents a different way the lamp can receive electricity, much like the inputs to a neural network. In a neural network, these inputs can be anything from pixels in a photo to words in a sentence. They are the initial data points that the network processes, similar to how our lamp starts by considering the energy available from each electricity source.';
         case 'w1':
         case 'w2':
         case 'w3':
-          return 'This is a weight node. It holds the weight value for the corresponding input.';
+          return 'Just as not every day is sunny and not every night is dark, the importance of each electricity source for the lamp can change. Some days, solar energy might be the primary source, while on overcast days or nighttime, the batteries or direct power become more crucial. This preference for certain sources over others is analogous to the weights in a neural network. Weights dictate the importance or influence of each input. As a neural network learns from data, it adjusts these weights, refining which inputs should be prioritized to produce accurate predictions.';
         case 'sum':
-          return 'This is the summation node. It aggregates the weighted inputs.';
+          return "When the lamp decides to light up, it doesn't randomly choose an electricity source. Instead, it combines the energy from all available sources. Some might contribute more, others less, but in the end, they all play a part in determining the total available electricity. This process mirrors the summation in neural networks, where each input (multiplied by its respective weight) is added together to provide a cumulative value or signal.";
         case 'activation':
-          return 'This is the activation node. It applies an activation function to the sum.';
+          return "Now, having summed up all its electricity, the lamp has a decision to make. Should it remain off, glow dimly, or shine brightly? This decision, based on the total electricity, is much like the activation function in neural networks. It's the rule that determines how much signal the neuron should pass onto the next layer based on the summed input. Whether it's deciding between off and on or somewhere in between, the lamp's response to the combined electricity is akin to how a neuron processes and transmits information through the network.";
         case 'output':
-          return 'This is the output node. It represents the output of the neural network.';
+          return "Finally, our journey of turning electricity into light reaches its culmination at the lamp. The output node is like the light emitted by the lamp, representing the final decision or prediction made by the neural network. Just as the lamp's brightness is the end result of considering all its electricity sources, the output of the network is the end result of all the processed inputs, weights, and activation functions. This output can be anything from a simple yes/no answer, a numerical value, or even a complex decision, mirroring the lamp's ability to shine with varying intensities based on the inputs and internal processes it has undergone.";
         default:
           return 'Unknown node';
       }

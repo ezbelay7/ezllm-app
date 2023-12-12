@@ -17,5 +17,16 @@
   
   .nav-link.active {
     font-weight: bold;
+    color: #1288ff;
+  }
+
+  .special-link {
+    font-size: larger; /* Make these links slightly larger */
+  }
+  
+  .nav-link:not(.special-link) {
+    display: block;
+    margin: 10px 0;
+    text-decoration: none; /* Removes underline from links */
   }
   
