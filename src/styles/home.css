@@ -8,8 +8,8 @@
   }
   
 .missionStyle {
-    padding: 20px;
     font-family: 'sans-serif';
+    width: 48%;
   }
   
 .buttonStyle {
@@ -22,7 +22,6 @@
   }
   
 .moduleStyle {
-    margin: 20px 0;
     display: flex;
     justify-content: space-around;
   }
